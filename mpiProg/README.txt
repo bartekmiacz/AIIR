@@ -16,3 +16,12 @@ Aby odpalić w trybie mpi:
 mpiexec.exe -np <ilosc_procesow> <sciezka_do_skompilowanego_pliku>
 
 Odpalenie w konsoli debugowej Visuala po prostu dziala jak odpalenie jednego procesu.
+
+Pod Linuksem dziala bez zadnych problemow.
+Aby zainstalowac na Ubuntu: sudo apt-get install mpich
+
+Potem wystarczy tylko uzyc cmake do konfiguracji i make do kompilacji.
+
+Aby odpalic w trybie mpi:
+
+mpirun -np <ilosc_procesow> <sciezka_do_binarki>

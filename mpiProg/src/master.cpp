@@ -25,7 +25,7 @@ void master(unsigned long long primeCandidate, int numberOfTries)
     MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
 
     work = std::min(numberOfTries, static_cast<int>(randBase.size()));
-    limit = std::min(numprocs, static_cast<int>(randBase.size()));
+    limit = std::min({ numprocs, static_cast<int>(randBase.size()+1), numberOfTries+1 });
 
     std::iota(randBase.begin(), randBase.end(), 2); // Wypelnienie wektora liczbami rosnacymi zaczynajacymi sie od 2
     std::shuffle(randBase.begin(), randBase.end(), g); // Wszystkie wartosci bazy w losowej kolejnosci.
@@ -43,6 +43,9 @@ void master(unsigned long long primeCandidate, int numberOfTries)
     //Rozdanie pierwszych zadan
     for (rank = 1; rank < limit; ++rank)
     {
+        MPI_Send(&d, 0, MPI_UNSIGNED_LONG_LONG, rank, WORKTAG, MPI_COMM_WORLD); //Konieczne aby wystartowac slavy
+        MPI_Send(&d, 1, MPI_UNSIGNED_LONG_LONG, rank, WORKTAG, MPI_COMM_WORLD);
+        MPI_Send(&s, 1, MPI_UNSIGNED, rank, WORKTAG, MPI_COMM_WORLD);
         MPI_Send(&(randBase[randIter]), 1, MPI_UNSIGNED_LONG_LONG, rank, WORKTAG, MPI_COMM_WORLD);
         work--;
         randIter++;
@@ -56,30 +59,35 @@ void master(unsigned long long primeCandidate, int numberOfTries)
         if (0 == partialResult) // Jezeli chociaz jeden zwroci 0 to liczba napewno nie jest pierwsza
         {
             result = false;
+            break; //Przerywamy petle poniewaz proces ktory zwroci 0 odrazu sie konczy wiec nie mozna mu wysylac nowego zadania a nawet nie ma sensu tego robic
         }
         probability /= 4; // Prawdopodobienstwo braku pierwszosci zmniejsza sie
 
         MPI_Send(&(randBase[randIter]), 1, MPI_UNSIGNED_LONG_LONG, status.MPI_SOURCE, WORKTAG, MPI_COMM_WORLD);
+
         work--;
         randIter++;
     }
 
     //Koniec zadan
-    for (rank = 1; rank < limit; ++rank)
+    for (rank = 1; rank < limit - (result ? 0:1); ++rank) //Odjecie tego result to w przypadku kiedy jeden stwierdzil ze jest nie pierwsza
     {
         MPI_Recv(&partialResult, 1, MPI_CHAR, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
 
-        if (0 == partialResult) // Jezeli chociaz jeden zwroci 0 to liczba napewno nie jest pierwsza
+        if (result) // Szkoda czasu na sprawdzanie jezeli juz wczesniej mozemy wiedziec ze liczba nie jest pierwsza
         {
-            result = false;
+            if (0 == partialResult) // Jezeli chociaz jeden zwroci 0 to liczba napewno nie jest pierwsza
+            {
+                result = false;
+            }
+            probability /= 4; // Prawdopodobienstwo braku pierwszosci zmniejsza sie
         }
-        probability /= 4; // Prawdopodobienstwo braku pierwszosci zmniejsza sie
     }
 
     //Zakonczenie reszty procesow
     for (rank = 1; rank < numprocs; ++rank)
     {
-        MPI_Send(0, 0, MPI_CHAR, rank, DIETAG, MPI_COMM_WORLD);
+        MPI_Send(0, 0, MPI_UNSIGNED_LONG_LONG, rank, DIETAG, MPI_COMM_WORLD);
     }
 
     if (result)

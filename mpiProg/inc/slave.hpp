@@ -1,5 +1,11 @@
 #pragma once
 
-unsigned long long fastPower(unsigned long long a, unsigned long long n);
+#define WORKTAG 1
+#define DIETAG 2
+#define MASTER_TAG 0
 
-void slave();
+class InfInt;
+
+InfInt fastPower(InfInt a, InfInt n);
+
+void slave(unsigned long long primeCandidate);

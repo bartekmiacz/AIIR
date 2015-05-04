@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Szczegóły zadania{% endblock %}
+{% block head %}Szczegóły zadania{% endblock %}
+{% block content %}
+<h1>{{ task.number }}</h1>
+Status: {{ task.status }}<br>
+Data utworzenia: {{ task.create_date }}<br>
+Data rozpoczęcia: {{ task.start_date }}<br>
+Data zakończenia: {{ task.finish_date }}<br>
+Pierwsza: {{ task.result }}<br>
+Prawdopodobieństwo: {{ task.probability }}<br>
+<br>
+<a href='/tasks/'>Powrót</a>
+{% endblock %}

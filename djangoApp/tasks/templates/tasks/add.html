@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Nowe zadanie{% endblock %}
+{% block head %}Nowe zadanie{% endblock %}
+{% block content %}
+    <form method="post" action=".">{% csrf_token %}
+        <table border="0">
+            {{ form.as_table }}
+        </table>
+        <input type="submit" value="Dodaj" />
+    </form>
+    <a href="/tasks/">Powrót</a>
+{% endblock %}

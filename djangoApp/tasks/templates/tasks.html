@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Tester liczb pierwszych AIIR 2015{% endblock %}
+{% block head %}Tester liczb pierwszych AIIR 2015{% endblock %}
+{% block content %}
+    <p>Welcome {{ user.username }} !!!</p>
+
+    {% if latest_tasks_list %}
+    <ul>
+    {% for task in latest_tasks_list %}
+        <li><a href="/tasks/{{ tasks.id }}/">{{ task.number }}</a></li>
+    {% endfor %}
+    </ul>
+	{% else %}
+	    <p>No tasks are available.</p>
+	{% endif %}
+
+    <a href="/home/">Powrót</a><br>
+    <a href="/logout/">Wyloguj</a>
+{% endblock %}

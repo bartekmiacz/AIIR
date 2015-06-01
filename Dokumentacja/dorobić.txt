@@ -2,4 +2,4 @@
 2. front - jak wygl¹da zlecenie zadania, jak wygl¹da schemat bazy danych, jak wygl¹da rekord zadania, jak s¹ przekazywane dane do backendu, 
 	jak za pobierane wyniki z backendu
 3. prezentacja - 4 slajdy o co kaman
-4. dokumentacja - spójna, jêzyk formalny, naukowy, 
+4. dokumentacja - spójna, jêzyk formalny, naukowy, dorobiæ rozdzia³ Dokumentacja powykowanwcza

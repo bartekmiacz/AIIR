@@ -1,0 +1,5 @@
+1. backend - jak program rodziela zadania slave'om, w jaki sposób œci¹ga dane z fronta, jak przekazuje wyniki do fronta
+2. front - jak wygl¹da zlecenie zadania, jak wygl¹da schemat bazy danych, jak wygl¹da rekord zadania, jak s¹ przekazywane dane do backendu, 
+	jak za pobierane wyniki z backendu
+3. prezentacja - 4 slajdy o co kaman
+4. dokumentacja - spójna, jêzyk formalny, naukowy, 

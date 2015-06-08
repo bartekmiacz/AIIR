@@ -1,1 +1,10 @@
-3. prezentacja - 4 slajdy o co kaman
+//zrobione       1. cele i za³o¿enia (algorytm w rozposzonym srodowisku, cele, opis algorytmu i srodowisko klastrowe z interfejsem
+// zrobione      2. architekturai projekt koncepcyjny. Elementy (modu³y) za³o¿enia i komunikacja.(komponenty) )baza danych, master, slave, mechanizmy komunikacji miêdzy nimi)(czy komponenty musz¹ staæ na jednym wêŸle).  (bez szczegó³u technicznego)
+3. dokumentacja techinczna, mechanizmy komunikacji i jak wygl¹a zadanie, rekordy w bazie danych, podzadania, strona techniczna. Jak wyci¹gany jest wynik, jak zauwazane jest zadanie przez mastera
+//poprawione 4. testy wydajnoœciowe,  ((zmienic jednostke czasu na wykresach na milisekundy)
+//zrobione 	   5. dokumentacja powykonawcza. (instalujemy œrodowisko w jakiejœ serwerowni, odbiorc¹ jest osoba techniczna ktora musi zrozumiec na czym polega zainstalowanie wêz³ów opisanych wy¿ej. Wersje pakiety itp ) 
+dokumentacja PDF z paczka intalacyjna nie musi byc wydrukowana. 
+
+PRezentacja za tydzieñ (szablon uczelniany)
+na godzine 8:00 lub 11:00
+10min pokazujemy w akcji frontend. I technicznie przeanalizowac jak dzia³¹ ca³y proces naszej aplikacji  opisac algorytm. Powiedziec dobre i z³ê wra¿enia z wykorzystanych narzêdzi. (Z czym by³ problem, czy teraz juz nie pope³nilibysmy drugi raz tego samego b³êdu) 
